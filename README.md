@@ -2,7 +2,6 @@ The goal of this exercise is to learn some basics of debugging Python code.
 
 # Contents
 
--   [Getting set up](#getting-set-up)
 -   [Learning objective](#learning-objective)
 -   [The Python debugger](#the-python-debugger)
     -   [Running the script through the debugger](#running-the-script-through-the-debugger)
@@ -11,46 +10,6 @@ The goal of this exercise is to learn some basics of debugging Python code.
 -   [Acknowledgments](#acknowledgments)
 -   [License](#license)
 
-
-# Getting set up
-
-At this point, you should have
-(1) an account on [Github](https://github.com/) and
-(2) been introduced to the very basics of [Git](https://git-scm.com/).
-
-1.  Login to your [Github](https://github.com/) account.
-
-1.  Fork [this repository](https://github.com/joaks1/python-debugging), by
-    clicking the 'Fork' button on the upper right of the page.
-
-    After a few seconds, you should be looking at *your* 
-    copy of the repo in your own Github account.
-
-1.  Click the 'Clone or download' button, and copy the URL of the repo via the
-    'copy to clipboard' button.
-
-1.  In your terminal, navigate to where you want to keep this repo (you can
-    always move it later, so just your home directory is fine). Then type:
-
-        $ git clone the-url-you-just-copied
-
-    and hit enter to clone the repository. Make sure you are cloning **your**
-    fork of this repo.
-
-1.  Next, `cd` into the directory:
-
-        $ cd the-name-of-directory-you-just-cloned
-
-1.  At this point, you should be in your own local copy of the repository.
-
-1.  As you work on the exercise below, be sure to frequently `add` and `commit`
-    your work and `push` changes to the *remote* copy of the repo hosted on
-    GitHub. Don't enter these commands now; this is just to jog your memory:
-
-        $ # Do some work
-        $ git add file-you-worked-on.py
-        $ git commit
-        $ git push origin master
 
 # Learning objective 
 
@@ -280,20 +239,17 @@ To:
 ```python
     if width:
         width = height
-    import pdb; pdb.set_trace()
+    breakpoint()
     area = height * width
     return area
 ```
 
-We simply added `import pdb; pdb.set_trace()` just before we calculate the area
-of the rectangle.
+We simply added `breakpoint()` just before we calculate the area of the rectangle.
 
 Now, you can run the script as you normally would:
 
     $ python3 area_of_rectangle.py 3 6
 
-(Notice, we did not have to invoke the pdb module like above; that is done by
-`pdb.set_trace()`)
 Notice that you get dropped into the `pdb` debugger:
 
     > /home/jamie/Dropbox/projects/python-debugging/area_of_rectangle.py(35)area_of_rectangle()
@@ -307,7 +263,7 @@ Now we can use `l` to see where we are:
      31  	    """
      32  	    if width:
      33  	        width = height
-     34  	    import pdb; pdb.set_trace()
+     34  	    breakpoint()
      35  ->	    area = height * width
      36  	    return area
      37  	
@@ -315,7 +271,7 @@ Now we can use `l` to see where we are:
      39  	    if (len(sys.argv) < 2) or (len(sys.argv) > 3):
      40  	        message = (
 
-We are at the line immediately after our `pdb.set_trace()` call.  Now, we can
+We are at the line immediately after our `breakpoint()` call.  Now, we can
 use the debugger to inspect variables and continue to execute the script, just
 like we learned above. For example, use `p` and `type` to inspect the variables
 `height` and `width`:
@@ -331,7 +287,6 @@ like we learned above. For example, use `p` and `type` to inspect the variables
 
 
 # The Exercise
-
 Now that you know the basics of the Python debugger,
 use it to debug the `area_of_rectangle.py` script.
 
